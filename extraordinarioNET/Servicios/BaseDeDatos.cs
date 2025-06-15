@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using SQLite;
+using System.Threading.Tasks;
 using extraordinarioNET.Model;
 
 namespace extraordinarioNET.Servicios
@@ -100,16 +101,16 @@ namespace extraordinarioNET.Servicios
 
             var artistas = new List<Artista>
             {
-                new Artista { Nombre = "BTS", Foto = "bts.jpg", Ranking = 1, UltimoAlbum = "Proof"},
-                new Artista { Nombre = "Stray Kids", Foto = "sk.jpg", Ranking = 2, UltimoAlbum = "Mixtape:Dominate" },
-                new Artista { Nombre = "Enhypen", Foto = "enhypen.jpg", Ranking = 3, UltimoAlbum = "Desire : Unleash" },
-                new Artista { Nombre = "Twice", Foto = "twice.jpg", Ranking = 4, UltimoAlbum = "This is For" },
-                new Artista { Nombre = "Black Pink", Foto = "bp.jpg", Ranking = 5, UltimoAlbum = "Born Pink" },
-                new Artista { Nombre = "New Jeans", Foto = "nj.jpg", Ranking = 6, UltimoAlbum = "NJWMX"},
-                new Artista { Nombre = "Ive", Foto = "ive.jpg", Ranking = 7, UltimoAlbum = "I've Ive" },
-                new Artista { Nombre = "TXT", Foto = "txt.jpg", Ranking = 8, UltimoAlbum = "Freefall" },
-                new Artista { Nombre = "EXO", Foto = "exo.jpg", Ranking = 9, UltimoAlbum = "Exist"},
-                new Artista { Nombre = "The rose", Foto = "tr.jpg", Ranking = 10, UltimoAlbum = "WRLD" }
+                new Artista { Nombre = "BTS", Foto = "bts.jpeg", Ranking = 1, UltimoAlbum = "Proof"},
+                new Artista { Nombre = "Stray Kids", Foto = "sk.jpeg", Ranking = 2, UltimoAlbum = "Mixtape:Dominate" },
+                new Artista { Nombre = "Enhypen", Foto = "enhypen.jpeg", Ranking = 3, UltimoAlbum = "Desire : Unleash" },
+                new Artista { Nombre = "Twice", Foto = "twice.jpeg", Ranking = 4, UltimoAlbum = "This is For" },
+                new Artista { Nombre = "Black Pink", Foto = "bp.jpeg", Ranking = 5, UltimoAlbum = "Born Pink" },
+                new Artista { Nombre = "New Jeans", Foto = "nj.jpeg", Ranking = 6, UltimoAlbum = "NJWMX"},
+                new Artista { Nombre = "Ive", Foto = "ive.jpeg", Ranking = 7, UltimoAlbum = "I've Ive" },
+                new Artista { Nombre = "TXT", Foto = "txt.jpeg", Ranking = 8, UltimoAlbum = "Freefall" },
+                new Artista { Nombre = "EXO", Foto = "exo.jpeg", Ranking = 9, UltimoAlbum = "Exist"},
+                new Artista { Nombre = "The rose", Foto = "tr.jpeg", Ranking = 10, UltimoAlbum = "WRLD" }
             };
 
             foreach (var artista in artistas)
