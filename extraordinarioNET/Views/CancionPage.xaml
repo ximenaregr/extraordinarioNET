@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodel="clr-namespace:extraordinarioNET.ViewModel"
+             x:Class="extraordinarioNET.Views.CancionPage"
+             Title="CancionPage"
+             Background="White">
+
+    <ScrollView>
+        <StackLayout Margin="15" Spacing="20">
+
+            <!-- Back Button -->
+            <Button Text="← Volver"
+                    Command="{Binding BackCommand}"
+                    BackgroundColor="#FF6B35"
+                    TextColor="White"
+                    HorizontalOptions="Start"
+                    CornerRadius="20"
+                    WidthRequest="100"/>
+
+            <!-- Loading Indicator -->
+            <ActivityIndicator IsVisible="{Binding IsBusy}"
+                              IsRunning="{Binding IsBusy}"
+                              Color="#FF6B35"
+                              VerticalOptions="Center"
+                              HorizontalOptions="Center"/>
+
+            <!-- Song Details -->
+            <StackLayout IsVisible="{Binding IsBusy, Converter={StaticResource InvertedBoolConverter}}"
+                        Spacing="15">
+
+                <!-- Song Image -->
+                <Frame BackgroundColor="#E0E0E0"
+                       WidthRequest="200"
+                       HeightRequest="200"
+                       CornerRadius="15"
+                       HasShadow="True"
+                       HorizontalOptions="Center">
+                    <Label Text="🎵"
+                           FontSize="80"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center"/>
+                </Frame>
+
+                <!-- Song Title -->
+                <Label Text="{Binding Cancion.Nombre}"
+                       FontSize="28"
+                       FontAttributes="Bold"
+                       TextColor="#333"
+                       HorizontalOptions="Center"
+                       HorizontalTextAlignment="Center"/>
+
+                <!-- Song Info Cards -->
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Release Year Card -->
+                    <Frame Grid.Column="0"
+                           BackgroundColor="White"
+                           HasShadow="True"
+                           CornerRadius="10"
+                           Margin="0,0,5,0">
+                        <StackLayout HorizontalOptions="Center">
+                            <Label Text="📅"
+                                   FontSize="24"
+                                   HorizontalOptions="Center"/>
+                            <Label Text="Año de Estreno"
+                                   FontSize="12"
+                                   TextColor="#666"
+                                   HorizontalOptions="Center"/>
+                            <Label Text="{Binding Cancion.AnoEstreno}"
+                                   FontSize="18"
+                                   FontAttributes="Bold"
+                                   TextColor="#333"
+                                   HorizontalOptions="Center"/>
+                        </StackLayout>
+                    </Frame>
+
+                    <!-- Duration Card -->
+                    <Frame Grid.Column="1"
+                           BackgroundColor="White"
+                           HasShadow="True"
+                           CornerRadius="10"
+                           Margin="5,0,0,0">
+                        <StackLayout HorizontalOptions="Center">
+                            <Label Text="⏱️"
+                                   FontSize="24"
+                                   HorizontalOptions="Center"/>
+                            <Label Text="Duración"
+                                   FontSize="12"
+                                   TextColor="#666"
+                                   HorizontalOptions="Center"/>
+                            <Label Text="{Binding Cancion.Duracion}"
+                                   FontSize="18"
+                                   FontAttributes="Bold"
+                                   TextColor="#333"
+                                   HorizontalOptions="Center"/>
+                        </StackLayout>
+                    </Frame>
+                </Grid>
+
+                <!-- Lyrics Section -->
+                <Frame BackgroundColor="White"
+                       HasShadow="True"
+                       CornerRadius="15"
+                       Padding="20">
+                    <StackLayout>
+                        <Label Text="🎤 Letra de la Canción"
+                               FontSize="18"
+                               FontAttributes="Bold"
+                               TextColor="#333"
+                               Margin="0,0,0,15"/>
+
+                        <ScrollView HeightRequest="300">
+                            <Label Text="{Binding Cancion.Letra}"
+                                   FontSize="14"
+                                   TextColor="#555"
+                                   LineBreakMode="WordWrap"
+                                   VerticalTextAlignment="Start"/>
+                        </ScrollView>
+                    </StackLayout>
+                </Frame>
+
+            </StackLayout>
+
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodel="clr-namespace:extraordinarioNET.ViewModel"
+             x:Class="extraordinarioNET.Views.ListaArtistasPage"
+             Title="ListaArtistasPage"
+             Background="AliceBlue">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <Frame Grid.Row="0" 
+               BackgroundColor="#FF6B35" 
+               HasShadow="True"
+               CornerRadius="0"
+               Margin="0">
+            <StackLayout Orientation="Horizontal" 
+                        HorizontalOptions="CenterAndExpand"
+                        VerticalOptions="Center"
+                        Spacing="10">
+                <Label Text="🏆" FontSize="24"/>
+                <Label Text="TOP 10 ARTISTAS" 
+                       FontSize="20" 
+                       FontAttributes="Bold" 
+                       TextColor="White"/>
+            </StackLayout>
+        </Frame>
+
+        <!-- Loading Indicator -->
+        <ActivityIndicator Grid.Row="1"
+                          IsVisible="{Binding IsBusy}"
+                          IsRunning="{Binding IsBusy}"
+                          Color="#FF6B35"
+                          VerticalOptions="Center"
+                          HorizontalOptions="Center"/>
+
+        <!-- Artists List -->
+        <CollectionView Grid.Row="1" 
+                       ItemsSource="{Binding Artistas}"
+                       IsVisible="{Binding IsBusy, Converter={StaticResource InvertedBoolConverter}}"
+                       SelectionMode="None"
+                       Margin="10">
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Padding="0,5">
+                        <Frame BackgroundColor="White"
+                               HasShadow="True"
+                               CornerRadius="15"
+                               Padding="15">
+
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ListaArtistasViewModel}}, Path=ArtistaSelectedCommand}"
+                                                     CommandParameter="{Binding .}"/>
+                            </Frame.GestureRecognizers>
+
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="60"/>
+                                    <ColumnDefinition Width="80"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+
+                                <!-- Ranking -->
+                                <Frame Grid.Column="0"
+                                       BackgroundColor="#FF6B35"
+                                       WidthRequest="40"
+                                       HeightRequest="40"
+                                       CornerRadius="20"
+                                       HasShadow="False"
+                                       VerticalOptions="Center">
+                                    <Label Text="{Binding Ranking}"
+                                           FontSize="18"
+                                           FontAttributes="Bold"
+                                           TextColor="White"
+                                           HorizontalOptions="Center"
+                                           VerticalOptions="Center"/>
+                                </Frame>
+
+                                <!-- Photo Placeholder -->
+                                <Frame Grid.Column="1"
+                                       BackgroundColor="#E0E0E0"
+                                       WidthRequest="60"
+                                       HeightRequest="60"
+                                       CornerRadius="30"
+                                       HasShadow="False"
+                                       VerticalOptions="Center">
+                                    <Label Text="👤"
+                                           FontSize="30"
+                                           HorizontalOptions="Center"
+                                           VerticalOptions="Center"/>
+                                </Frame>
+
+                                <!-- Artist Info -->
+                                <StackLayout Grid.Column="2" 
+                                           VerticalOptions="Center"
+                                           Margin="10,0">
+                                    <Label Text="{Binding Name}"
+                                           FontSize="18"
+                                           FontAttributes="Bold"
+                                           TextColor="#333"/>
+                                    <Label Text="{Binding LastAlbum, StringFormat='Último álbum: {0}'}"
+                                           FontSize="14"
+                                           TextColor="#666"/>
+                                </StackLayout>
+
+                                <!-- Arrow -->
+                                <Label Grid.Column="3"
+                                       Text="▶"
+                                       FontSize="16"
+                                       TextColor="#FF6B35"
+                                       VerticalOptions="Center"/>
+
+                            </Grid>
+                        </Frame>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+    </Grid>
+</ContentPage>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodel="clr-namespace:extraordinarioNET.ViewModel"
+             x:Class="extraordinarioNET.Views.PrincipalPage"
+             Title="Pagina Principal"
+             BackgroundColor="white">
+    <ContentPage.BindingContext>
+        <viewmodel:PrincipalViewModel />
+    </ContentPage.BindingContext>
+
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Color="#FF6B35" Offset="0.0" />
+                <GradientStop Color="#F7931E" Offset="0.5" />
+                <GradientStop Color="#FFD23F" Offset="1.0" />
+            </LinearGradientBrush>
+        </Grid.Background>
+
+        <StackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="30">
+
+            <!-- Logo o Icono -->
+            <Frame BackgroundColor="Transparent" 
+                   BorderColor="White" 
+                   CornerRadius="100" 
+                   WidthRequest="120" 
+                   HeightRequest="120"
+                   HasShadow="True">
+                <Label Text="🎵" 
+                       FontSize="60" 
+                       HorizontalOptions="Center" 
+                       VerticalOptions="Center"/>
+            </Frame>
+
+            <!-- Título Principal -->
+            <Label Text="TOP 10" 
+                   FontSize="48" 
+                   FontAttributes="Bold" 
+                   TextColor="White" 
+                   HorizontalOptions="Center"
+                   FontFamily="Arial"/>
+
+            <Label Text="ARTISTAS" 
+                   FontSize="32" 
+                   FontAttributes="Bold" 
+                   TextColor="White" 
+                   HorizontalOptions="Center"
+                   FontFamily="Arial"/>
+
+            <!-- Descripción -->
+            <Label Text="Descubre los mejores artistas del momento" 
+                   FontSize="16" 
+                   TextColor="White" 
+                   HorizontalOptions="Center"
+                   HorizontalTextAlignment="Center"
+                   Opacity="0.9"/>
+
+            <!-- Botón de Inicio -->
+            <Button Text="INICIAR" 
+                    Command="{Binding StartCommand}"
+                    BackgroundColor="White"
+                    TextColor="#FF6B35"
+                    FontSize="18"
+                    FontAttributes="Bold"
+                    CornerRadius="25"
+                    WidthRequest="200"
+                    HeightRequest="50">
+                <Button.Shadow>
+                    <Shadow Brush="Black" Offset="0,4" Radius="8" Opacity="0.3"/>
+                </Button.Shadow>
+            </Button>
+
+        </StackLayout>
+    </Grid>
+</ContentPage>

@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodel="clr-namespace:extraordinarioNET.ViewModel"
+             x:Class="extraordinarioNET.Views.ArtistaPage"
+             Title="ArtistaPage"
+             Background="AliceBlue">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="200" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!-- Back Button -->
+        <Button Grid.Row="0"
+                Text="← Volver"
+                Command="{Binding BackCommand}"
+                BackgroundColor="#FF6B35"
+                TextColor="White"
+                HorizontalOptions="Start"
+                Margin="10"
+                CornerRadius="20"/>
+
+        <!-- Artist Header -->
+        <Frame Grid.Row="1"
+               BackgroundColor="White"
+               HasShadow="True"
+               CornerRadius="15"
+               Margin="10">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="120"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Artist Photo Placeholder -->
+                <Frame Grid.Column="0"
+                       BackgroundColor="#E0E0E0"
+                       WidthRequest="100"
+                       HeightRequest="100"
+                       CornerRadius="50"
+                       HasShadow="False"
+                       VerticalOptions="Center">
+                    <Label Text="👤"
+                           FontSize="50"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center"/>
+                </Frame>
+
+                <!-- Artist Info -->
+                <StackLayout Grid.Column="1" 
+                           VerticalOptions="Center"
+                           Margin="15,0">
+                    <Label Text="{Binding Artista.Nombre}"
+                           FontSize="24"
+                           FontAttributes="Bold"
+                           TextColor="#333"/>
+                    <Label Text="{Binding Artista.UltimoAlbum, StringFormat='Último álbum: {0}'}"
+                           FontSize="16"
+                           TextColor="#666"/>
+                </StackLayout>
+
+            </Grid>
+        </Frame>
+
+        <!-- Songs Section -->
+        <StackLayout Grid.Row="2" Margin="10">
+
+            <Label Text="Canciones Populares"
+                   FontSize="20"
+                   FontAttributes="Bold"
+                   TextColor="#333"
+                   Margin="5,10"/>
+
+            <!-- Loading Indicator -->
+            <ActivityIndicator IsVisible="{Binding IsBusy}"
+                              IsRunning="{Binding IsBusy}"
+                              Color="#FF6B35"
+                              VerticalOptions="Center"
+                              HorizontalOptions="Center"/>
+
+            <!-- Songs List -->
+            <CollectionView ItemsSource="{Binding Canciones}"
+                           IsVisible="{Binding IsBusy, Converter={StaticResource InvertedBoolConverter}}"
+                           SelectionMode="None">
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Padding="0,5">
+                            <Frame BackgroundColor="White"
+                                   HasShadow="True"
+                                   CornerRadius="10"
+                                   Padding="15">
+
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ArtistaDetailViewModel}}, Path=SongSelectedCommand}"
+                                                         CommandParameter="{Binding .}"/>
+                                </Frame.GestureRecognizers>
+
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="60"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <!-- Song Image Placeholder -->
+                                    <Frame Grid.Column="0"
+                                           BackgroundColor="#E0E0E0"
+                                           WidthRequest="50"
+                                           HeightRequest="50"
+                                           CornerRadius="8"
+                                           HasShadow="False"
+                                           VerticalOptions="Center">
+                                        <Label Text="🎵"
+                                               FontSize="20"
+                                               HorizontalOptions="Center"
+                                               VerticalOptions="Center"/>
+                                    </Frame>
+
+                                    <!-- Song Info -->
+                                    <StackLayout Grid.Column="1" 
+                                               VerticalOptions="Center"
+                                               Margin="10,0">
+                                        <Label Text="{Binding Title}"
+                                               FontSize="16"
+                                               FontAttributes="Bold"
+                                               TextColor="#333"/>
+                                        <Label Text="{Binding ReleaseYear, StringFormat='Año: {0}'}"
+                                               FontSize="12"
+                                               TextColor="#666"/>
+                                    </StackLayout>
+
+                                    <!-- Play Arrow -->
+                                    <Label Grid.Column="2"
+                                           Text="▶"
+                                           FontSize="16"
+                                           TextColor="#FF6B35"
+                                           VerticalOptions="Center"/>
+
+                                </Grid>
+                            </Frame>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </StackLayout>
+
+    </Grid>
+</ContentPage>
