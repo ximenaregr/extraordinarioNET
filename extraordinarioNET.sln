@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.12.35707.178 d17.12
+VisualStudioVersion = 17.12.35707.178
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "extraordinarioNET", "extraordinarioNET\extraordinarioNET.csproj", "{D3C4E0A2-79AD-40C0-9876-0A5933026CCE}"
 EndProject
@@ -13,6 +13,7 @@ Global
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{D3C4E0A2-79AD-40C0-9876-0A5933026CCE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D3C4E0A2-79AD-40C0-9876-0A5933026CCE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D3C4E0A2-79AD-40C0-9876-0A5933026CCE}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
 		{D3C4E0A2-79AD-40C0-9876-0A5933026CCE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D3C4E0A2-79AD-40C0-9876-0A5933026CCE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection

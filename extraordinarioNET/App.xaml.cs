@@ -17,7 +17,7 @@ namespace extraordinarioNET
 
       
             window.Title = "Top 10 Artistas";
-            return new Window(new AppShell());
+            return window;
         }
     }
 }
