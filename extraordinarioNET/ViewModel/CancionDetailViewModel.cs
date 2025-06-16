@@ -67,5 +67,11 @@ namespace extraordinarioNET.ViewModel
         {
             await Shell.Current.GoToAsync("..");
         }
+        public ICommand SongSelectedCommand => new Command<Cancion>(async (cancion) =>
+        {
+            if (cancion == null) return;
+
+            await Shell.Current.GoToAsync($"cancion-detail?Idcancion={cancion.Id}");
+        });
     }
 }

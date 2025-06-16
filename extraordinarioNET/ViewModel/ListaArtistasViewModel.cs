@@ -26,6 +26,15 @@ namespace extraordinarioNET.ViewModel
         public ICommand LoadArtistasCommand { get; }
         public ICommand ArtistaSelectedCommand { get; }
 
+      
+
+        private async Task OnArtistaSelected(Artista artista)
+        {
+            if (artista == null) return;
+            await Shell.Current.GoToAsync($"artista-detail?Idartista={artista.Id}");
+        }
+
+
         public async Task LoadArtista()
         {
             IsBusy = true;
@@ -33,26 +42,28 @@ namespace extraordinarioNET.ViewModel
             {
                 Artistas.Clear();
                 var artistas = await _databaseService.GetArtistasAsync();
+
+                // Debug: Imprime información
+                System.Diagnostics.Debug.WriteLine($"Cargando artistas...");
+                System.Diagnostics.Debug.WriteLine($"Artistas encontrados: {artistas?.Count() ?? 0}");
+
                 foreach (var artista in artistas)
                 {
+                    System.Diagnostics.Debug.WriteLine($"Artista: {artista.Nombre}, Ranking: {artista.Ranking}");
                     Artistas.Add(artista);
                 }
-            }
-            catch (Exception  ex)
-            {
-                await Application.Current.MainPage.DisplayAlert("Error", ex.Message, "OK");
 
+                System.Diagnostics.Debug.WriteLine($"Artistas en colección: {Artistas.Count}");
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Error: {ex.Message}");
+                await Application.Current.MainPage.DisplayAlert("Error", ex.Message, "OK");
             }
             finally
             {
                 IsBusy = false;
             }
-        }
-
-        private async Task OnArtistaSelected(Artista artista)
-        {
-            if (artista == null) return;
-            await Shell.Current.GoToAsync($"artistadetail?Idartista={artista.Id}");
         }
     }
 }

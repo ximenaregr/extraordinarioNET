@@ -100,11 +100,11 @@
                                 <StackLayout Grid.Column="2" 
                                            VerticalOptions="Center"
                                            Margin="10,0">
-                                    <Label Text="{Binding Name}"
+                                    <Label Text="{Binding Nombre}"
                                            FontSize="18"
                                            FontAttributes="Bold"
                                            TextColor="#333"/>
-                                    <Label Text="{Binding LastAlbum, StringFormat='Último álbum: {0}'}"
+                                    <Label Text="{Binding UltimoAlbum, StringFormat='Último álbum: {0}'}"
                                            FontSize="14"
                                            TextColor="#666"/>
                                 </StackLayout>

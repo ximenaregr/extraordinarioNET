@@ -121,15 +121,15 @@
 
                                     <!-- Song Info -->
                                     <StackLayout Grid.Column="1" 
-                                               VerticalOptions="Center"
-                                               Margin="10,0">
-                                        <Label Text="{Binding Title}"
-                                               FontSize="16"
-                                               FontAttributes="Bold"
-                                               TextColor="#333"/>
-                                        <Label Text="{Binding ReleaseYear, StringFormat='Año: {0}'}"
-                                               FontSize="12"
-                                               TextColor="#666"/>
+           VerticalOptions="Center"
+           Margin="10,0">
+                                        <Label Text="{Binding Nombre}"
+           FontSize="16"
+           FontAttributes="Bold"
+           TextColor="#333"/>
+                                        <Label Text="{Binding AnoEstreno, StringFormat='Año: {0}'}"
+           FontSize="12"
+           TextColor="#666"/>
                                     </StackLayout>
 
                                     <!-- Play Arrow -->

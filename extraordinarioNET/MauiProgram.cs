@@ -22,13 +22,12 @@ namespace extraordinarioNET
             SQLitePCL.Batteries_V2.Init();
 
             // Database
-            string dbPath = Path.Combine(FileSystem.AppDataDirectory, "artists.db3");
+            string dbPath = Path.Combine(FileSystem.AppDataDirectory, "musica.db3");
 
             // Registrar BaseDeDatos como singleton
             builder.Services.AddSingleton<BaseDeDatos>(serviceProvider =>
             {
                 var database = new BaseDeDatos(dbPath);
-                // Inicializar la base de datos de forma asíncrona en el background
                 _ = Task.Run(async () => await database.InitializeAsync());
                 return database;
             });
@@ -44,8 +43,11 @@ namespace extraordinarioNET
             builder.Services.AddTransient<ArtistaPage>();
             builder.Services.AddTransient<CancionPage>();
 
-            builder.Logging.AddDebug();
+            // RUTAS
+            Routing.RegisterRoute("artista-detail", typeof(ArtistaPage));
+            Routing.RegisterRoute("cancion-detail", typeof(CancionPage));
 
+            builder.Logging.AddDebug();
             return builder.Build();
         }
     }

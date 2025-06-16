@@ -14,7 +14,9 @@
         Route="MainPage" />
 
     <ShellContent
-        Title="Artista"
-        ContentTemplate="{DataTemplate local:ArtistaPage}"/>
+        Title="Lista Artistas"
+        ContentTemplate="{DataTemplate local:ListaArtistasPage}"
+        Route="artistas" />
+
 
 </Shell>
